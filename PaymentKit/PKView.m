@@ -30,11 +30,6 @@
 - (void)setupCardCVCField;
 - (void)setupZipField;
 
-- (void)stateCardNumber;
-- (void)stateMeta;
-- (void)stateCardCVC;
-- (void)stateZip;
-
 - (void)setPlaceholderViewImage:(UIImage *)image;
 - (void)setPlaceholderToCVC;
 - (void)setPlaceholderToCardType;

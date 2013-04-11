@@ -41,4 +41,10 @@
 @property (readonly) PKCard* card;
 @property (setter = setUSAddress:) BOOL usAddress;
 
+// Make the state management methods public
+- (void)stateCardNumber;
+- (void)stateMeta;
+- (void)stateCardCVC;
+- (void)stateZip;
+
 @end
