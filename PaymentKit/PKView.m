@@ -558,9 +558,9 @@
 
 // Custom methods
 
-- (void)setCardNumberToNumber:(NSString *)cardNumber
+- (void)setCardNumberToNumber:(NSString *)number
 {
-    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:cardNumber];
+    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:number];
     
     // Don't allow anything that's too long
     if ( ![cardNumber isPartiallyValid] )

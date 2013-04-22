@@ -48,6 +48,6 @@
 - (void)stateZip;
 
 // Add public interface method to programmatically set the card number (useful for Card.io and similar such services)
-- (void)setCardNumberToNumber:(NSString *)cardNumber;
+- (void)setCardNumberToNumber:(NSString *)number;
 
 @end
