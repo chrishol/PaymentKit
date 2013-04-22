@@ -556,4 +556,30 @@
     [self checkValid];
 }
 
+// Custom methods
+
+- (void)setCardNumberToNumber:(NSString *)cardNumber
+{
+    PKCardNumber *cardNumber = [PKCardNumber cardNumberWithString:cardNumber];
+    
+    // Don't allow anything that's too long
+    if ( ![cardNumber isPartiallyValid] )
+        return;
+    
+    cardNumberField.text = [cardNumber formattedString];
+    
+    [self setPlaceholderToCardType];
+    
+    if ([cardNumber isValid]) {
+        [self textFieldIsValid:cardNumberField];
+        [self stateMeta];
+        
+    } else if ([cardNumber isValidLength] && ![cardNumber isValidLuhn]) {
+        [self textFieldIsInvalid:cardNumberField withErrors:YES];
+        
+    } else if (![cardNumber isValidLength]) {
+        [self textFieldIsInvalid:cardNumberField withErrors:NO];
+    }
+}
+
 @end
