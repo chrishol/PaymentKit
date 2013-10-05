@@ -73,20 +73,7 @@
     isUSAddress    = YES;
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 45);
-    self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 9.0f;
-    self.layer.borderWidth = 1.0f;
-    self.layer.borderColor = [RGB(171,171,171) CGColor];
-    self.layer.shadowColor = [RGB(255,255,255) CGColor];
-    self.layer.shadowOffset = CGSizeMake(0, 1.0);
-    self.layer.shadowOpacity = 1.0;
-    self.layer.shadowRadius = 0.3;
-    
-    CALayer *innerShadow = [CALayer layer];
-    innerShadow.frame = CGRectMake(0, 1, self.frame.size.width, 1);
-    innerShadow.backgroundColor = [RGB(230,230,230) CGColor];
-    innerShadow.cornerRadius = 9.0f;
-    [self.layer addSublayer:innerShadow];
+    self.backgroundColor = [UIColor clearColor];
     
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(48, 13, self.frame.size.width - 48, 20)];
     self.innerView.clipsToBounds = YES;
@@ -108,12 +95,12 @@
 - (void)setupPlaceholderView
 {
     placeholderView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 13, 32, 20)];
-    placeholderView.backgroundColor = [UIColor whiteColor];
+    placeholderView.backgroundColor = [UIColor clearColor];
     placeholderView.image = [UIImage imageNamed:@"placeholder"];
     
     CALayer *clip = [CALayer layer];
     clip.frame = CGRectMake(32, 0, 4, 20);
-    clip.backgroundColor = [UIColor whiteColor].CGColor;
+    clip.backgroundColor = [UIColor clearColor].CGColor;
     [placeholderView.layer addSublayer:clip];
 }
 
@@ -255,8 +242,8 @@
 {
     isInitialState = NO;
     
-    CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:DefaultBoldFont];
-    CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:DefaultBoldFont];
+    CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:self.cardNumberField.font];
+    CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:self.cardNumberField.font];
     CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width);
         
     [UIView animateWithDuration:0.400 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -580,6 +567,21 @@
     } else if (![cardNumber isValidLength]) {
         [self textFieldIsInvalid:cardNumberField withErrors:NO];
     }
+}
+
+- (void)setDefaultFont:(UIFont *)font textColor:(UIColor *)textColor
+{
+    cardNumberField.textColor = textColor;
+    cardNumberField.font = font;
+
+    addressZipField.textColor = textColor;
+    addressZipField.font = font;
+
+    cardCVCField.textColor = textColor;
+    cardCVCField.font = font;
+
+    cardExpiryField.textColor = textColor;
+    cardExpiryField.font = font;
 }
 
 @end

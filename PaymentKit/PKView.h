@@ -50,4 +50,7 @@
 // Add public interface method to programmatically set the card number (useful for Card.io and similar such services)
 - (void)setCardNumberToNumber:(NSString *)number;
 
+// Add public interface method to allow updating the font and text color
+- (void)setDefaultFont:(UIFont *)font textColor:(UIColor *)textColor;
+
 @end
