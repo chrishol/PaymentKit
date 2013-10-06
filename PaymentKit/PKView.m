@@ -15,7 +15,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "PKView.h"
-#import "PKTextField.h"
 
 @interface PKView () {
 @private

@@ -13,9 +13,9 @@
 #import "PKCardCVC.h"
 #import "PKAddressZip.h"
 #import "PKUSAddressZip.h"
+#import "PKTextField.h"
 
 @class PKView;
-@class PKTextField;
 
 @protocol PKViewDelegate <NSObject>
 @optional
