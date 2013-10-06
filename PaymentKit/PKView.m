@@ -23,26 +23,9 @@
     BOOL isUSAddress;
 }
 
-- (void)setup;
-- (void)setupPlaceholderView;
-- (void)setupCardNumberField;
-- (void)setupCardExpiryField;
-- (void)setupCardCVCField;
-- (void)setupZipField;
+@property (strong,nonatomic) UIColor *defaultTextColor;
+@property (strong,nonatomic) UIColor *errorTextColor;
 
-- (void)setPlaceholderViewImage:(UIImage *)image;
-- (void)setPlaceholderToCVC;
-- (void)setPlaceholderToCardType;
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)cardNumberFieldShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)cardExpiryShouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)cardCVCShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
-- (BOOL)addressZipShouldChangeCharactersInRange: (NSRange)range replacementString:(NSString *)replacementString;
-
-- (void)checkValid;
-- (void)textFieldIsValid:(UITextField *)textField;
-- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors;
 @end
 
 @implementation PKView
@@ -74,6 +57,8 @@
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 45);
     self.backgroundColor = [UIColor clearColor];
+    self.defaultTextColor = DarkGreyColor;
+    self.errorTextColor = RedColor;
     
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(48, 13, self.frame.size.width - 48, 20)];
     self.innerView.clipsToBounds = YES;
@@ -112,7 +97,7 @@
     
     cardNumberField.placeholder = @"1234 5678 9012 3456";
     cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    cardNumberField.textColor = DarkGreyColor;
+    cardNumberField.textColor = self.defaultTextColor;
     cardNumberField.font = DefaultBoldFont;
     
     [cardNumberField.layer setMasksToBounds:YES];
@@ -126,7 +111,7 @@
     
     cardExpiryField.placeholder = @"MM/YY";
     cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
-    cardExpiryField.textColor = DarkGreyColor;
+    cardExpiryField.textColor = self.defaultTextColor;
     cardExpiryField.font = DefaultBoldFont;
     
     cardExpiryField.layer.opacity = 0;
@@ -142,7 +127,7 @@
     
     cardCVCField.placeholder = @"CVC";
     cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
-    cardCVCField.textColor = DarkGreyColor;
+    cardCVCField.textColor = self.defaultTextColor;
     cardCVCField.font = DefaultBoldFont;
     
     cardCVCField.layer.opacity = 0;
@@ -158,7 +143,7 @@
     
     addressZipField.placeholder = @"ZIP";
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
-    addressZipField.textColor = DarkGreyColor;
+    addressZipField.textColor = self.defaultTextColor;
     addressZipField.font = DefaultBoldFont;
     
     addressZipField.layer.opacity = 0;
@@ -234,8 +219,6 @@
                              [addressZipField removeFromSuperview];
                          }];
     }
-    
-    [self.cardNumberField becomeFirstResponder];
 }
 
 - (void)stateMeta
@@ -528,16 +511,18 @@
     }
 }
 
-- (void)textFieldIsValid:(UITextField *)textField {
-    textField.textColor = DarkGreyColor;
+- (void)textFieldIsValid:(UITextField *)textField
+{
+    textField.textColor = self.defaultTextColor;
     [self checkValid];
 }
 
-- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors {
+- (void)textFieldIsInvalid:(UITextField *)textField withErrors:(BOOL)errors
+{
     if (errors) {
-        textField.textColor = RedColor;
+        textField.textColor = self.errorTextColor;
     } else {
-        textField.textColor = DarkGreyColor;        
+        textField.textColor = self.defaultTextColor;
     }
 
     [self checkValid];
@@ -569,17 +554,25 @@
     }
 }
 
+- (void)setDefaultFont:(UIFont *)font textColor:(UIColor *)textColor errorTextColor:(UIColor *)errorTextColor
+{
+    self.errorTextColor = errorTextColor;
+    [self setDefaultFont:font textColor:textColor];
+}
+
 - (void)setDefaultFont:(UIFont *)font textColor:(UIColor *)textColor
 {
+    self.defaultTextColor = textColor;
+    
     cardNumberField.textColor = textColor;
     cardNumberField.font = font;
-
+    
     addressZipField.textColor = textColor;
     addressZipField.font = font;
-
+    
     cardCVCField.textColor = textColor;
     cardCVCField.font = font;
-
+    
     cardExpiryField.textColor = textColor;
     cardExpiryField.font = font;
 }
