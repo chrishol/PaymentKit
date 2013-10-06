@@ -15,6 +15,7 @@
 #import "PKUSAddressZip.h"
 
 @class PKView;
+@class PKTextField;
 
 @protocol PKViewDelegate <NSObject>
 @optional
@@ -32,10 +33,10 @@
 
 @property IBOutlet UIView* innerView;
 @property IBOutlet UIView* clipView;
-@property IBOutlet UITextField* cardNumberField;
-@property IBOutlet UITextField* cardExpiryField;
-@property IBOutlet UITextField* cardCVCField;
-@property IBOutlet UITextField* addressZipField;
+@property IBOutlet PKTextField* cardNumberField;
+@property IBOutlet PKTextField* cardExpiryField;
+@property IBOutlet PKTextField* cardCVCField;
+@property IBOutlet PKTextField* addressZipField;
 @property IBOutlet UIImageView* placeholderView;
 
 @property (weak) id <PKViewDelegate> delegate;
@@ -54,5 +55,6 @@
 // Add public interface methods to allow updating the font and text colors
 - (void)setDefaultFont:(UIFont *)font textColor:(UIColor *)textColor;
 - (void)setDefaultFont:(UIFont *)font textColor:(UIColor *)textColor errorTextColor:(UIColor *)errorTextColor;
+- (void)setPlaceholderFont:(UIFont *)font placeholderTextColor:(UIColor *)textColor;
 
 @end

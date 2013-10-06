@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5678B1491802251000B0D4DB /* PKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678B1481802251000B0D4DB /* PKTextField.m */; };
 		FA007D1F16FA3B82006DD86E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F1A5916C19BF700835C75 /* QuartzCore.framework */; };
 		FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA06D14B16AFC0AA00C46291 /* PKView.m */; };
 		FA2A74A016BB1EDD00AF0078 /* PKCard.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A749F16BB1EDD00AF0078 /* PKCard.m */; };
@@ -64,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5678B1471802251000B0D4DB /* PKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTextField.h; sourceTree = "<group>"; };
+		5678B1481802251000B0D4DB /* PKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTextField.m; sourceTree = "<group>"; };
 		FA06D14A16AFC0AA00C46291 /* PKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		FA06D14B16AFC0AA00C46291 /* PKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PKView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		FA2A749E16BB1EDD00AF0078 /* PKCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PKCard.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -244,6 +247,8 @@
 				FA45ACB416AF3CA40003A41D /* PKCardExpiryDelegate.m */,
 				FA06D14A16AFC0AA00C46291 /* PKView.h */,
 				FA06D14B16AFC0AA00C46291 /* PKView.m */,
+				5678B1471802251000B0D4DB /* PKTextField.h */,
+				5678B1481802251000B0D4DB /* PKTextField.m */,
 				FA2A749E16BB1EDD00AF0078 /* PKCard.h */,
 				FA2A749F16BB1EDD00AF0078 /* PKCard.m */,
 				FAADE6CD16BC44D9006FF4D1 /* PKAddressZip.h */,
@@ -451,6 +456,7 @@
 				FA45ACAC16AF37420003A41D /* PKCardExpiry.m in Sources */,
 				FA45ACAF16AF38BB0003A41D /* PKCardNumberDelegate.m in Sources */,
 				FA45ACB216AF3B250003A41D /* PKCardCVCDelegate.m in Sources */,
+				5678B1491802251000B0D4DB /* PKTextField.m in Sources */,
 				FA45ACB516AF3CA40003A41D /* PKCardExpiryDelegate.m in Sources */,
 				FA06D14C16AFC0AA00C46291 /* PKView.m in Sources */,
 				FA2A74A016BB1EDD00AF0078 /* PKCard.m in Sources */,

@@ -15,6 +15,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "PKView.h"
+#import "PKTextField.h"
 
 @interface PKView () {
 @private
@@ -91,7 +92,7 @@
 
 - (void)setupCardNumberField
 {
-    cardNumberField = [[UITextField alloc] initWithFrame:CGRectMake(40-26-10,0,160,20)];
+    cardNumberField = [[PKTextField alloc] initWithFrame:CGRectMake(40-26-10,0,160,20)];
     
     cardNumberField.delegate = self;
     
@@ -99,13 +100,14 @@
     cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     cardNumberField.textColor = self.defaultTextColor;
     cardNumberField.font = DefaultBoldFont;
+    cardNumberField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     
     [cardNumberField.layer setMasksToBounds:YES];
 }
 
 - (void)setupCardExpiryField
 {
-    cardExpiryField = [[UITextField alloc] initWithFrame:CGRectMake(100-26-10,0,60,20)];
+    cardExpiryField = [[PKTextField alloc] initWithFrame:CGRectMake(100-26-10,0,60,20)];
 
     cardExpiryField.delegate = self;
     
@@ -113,6 +115,7 @@
     cardExpiryField.keyboardType = UIKeyboardTypeNumberPad;
     cardExpiryField.textColor = self.defaultTextColor;
     cardExpiryField.font = DefaultBoldFont;
+    cardExpiryField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     
     cardExpiryField.layer.opacity = 0;
     
@@ -121,7 +124,7 @@
 
 - (void)setupCardCVCField
 {
-    cardCVCField = [[UITextField alloc] initWithFrame:CGRectMake(129,0,55,20)];
+    cardCVCField = [[PKTextField alloc] initWithFrame:CGRectMake(129,0,55,20)];
     
     cardCVCField.delegate = self;
     
@@ -129,6 +132,7 @@
     cardCVCField.keyboardType = UIKeyboardTypeNumberPad;
     cardCVCField.textColor = self.defaultTextColor;
     cardCVCField.font = DefaultBoldFont;
+    cardCVCField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     
     cardCVCField.layer.opacity = 0;
     
@@ -137,7 +141,7 @@
 
 - (void)setupZipField
 {
-    addressZipField = [[UITextField alloc] initWithFrame:CGRectMake(184,0,50,20)];
+    addressZipField = [[PKTextField alloc] initWithFrame:CGRectMake(184,0,50,20)];
     
     addressZipField.delegate = self;
     
@@ -145,6 +149,7 @@
     addressZipField.keyboardType = UIKeyboardTypeNumberPad;
     addressZipField.textColor = self.defaultTextColor;
     addressZipField.font = DefaultBoldFont;
+    addressZipField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     
     addressZipField.layer.opacity = 0;
     
@@ -575,6 +580,25 @@
     
     cardExpiryField.textColor = textColor;
     cardExpiryField.font = font;
+}
+
+- (void)setPlaceholderFont:(UIFont *)font placeholderTextColor:(UIColor *)textColor
+{
+    cardNumberField.placeholderColor = textColor;
+    cardNumberField.placeholderFont = font;
+    [cardNumberField setNeedsDisplay];
+    
+    addressZipField.placeholderColor = textColor;
+    addressZipField.placeholderFont = font;
+    [addressZipField setNeedsDisplay];
+    
+    cardCVCField.placeholderColor = textColor;
+    cardCVCField.placeholderFont = font;
+    [cardCVCField setNeedsDisplay];
+    
+    cardExpiryField.placeholderColor = textColor;
+    cardExpiryField.placeholderFont = font;
+    [cardExpiryField setNeedsDisplay];
 }
 
 @end
