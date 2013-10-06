@@ -37,7 +37,8 @@
 @property IBOutlet UITextField* cardCVCField;
 @property IBOutlet UITextField* addressZipField;
 @property IBOutlet UIImageView* placeholderView;
-@property id <PKViewDelegate> delegate;
+
+@property (weak) id <PKViewDelegate> delegate;
 @property (readonly) PKCard* card;
 @property (setter = setUSAddress:) BOOL usAddress;
 
