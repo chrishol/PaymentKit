@@ -32,7 +32,7 @@
 
 @synthesize innerView, cardNumberField,
             cardExpiryField, cardCVCField, addressZipField,
-            placeholderView, delegate;
+            placeholderView, transitionArea, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -68,6 +68,7 @@
     [self setupCardExpiryField];
     [self setupCardCVCField];
     [self setupZipField];
+    [self setupTransitionArea];
     
     [self.innerView addSubview:cardNumberField];
     [self addSubview:self.innerView];
@@ -155,6 +156,15 @@
     [addressZipField.layer setMasksToBounds:YES];
 }
 
+- (void)setupTransitionArea
+{
+    transitionArea = [[UIButton alloc] initWithFrame:CGRectMake(230,0,60,45)];
+    transitionArea.backgroundColor = [UIColor clearColor];
+    transitionArea.enabled = NO;
+    [transitionArea addTarget:self action:@selector(stateMeta) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:transitionArea];
+}
+
 - (BOOL)usAddress
 {
     return isUSAddress;
@@ -205,6 +215,8 @@
         // Animate left
         isInitialState = YES;
         
+        transitionArea.enabled = NO;
+        
         [UIView animateWithDuration:0.400
                               delay:0
                             options:(UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction)
@@ -221,6 +233,10 @@
                              [cardExpiryField removeFromSuperview];
                              [cardCVCField removeFromSuperview];
                              [addressZipField removeFromSuperview];
+                             if ([self.cardNumber isValid]) {
+                                 transitionArea.enabled = YES;
+                                 [self bringSubviewToFront:transitionArea];
+                             }
                          }];
     }
 }
@@ -228,6 +244,8 @@
 - (void)stateMeta
 {
     isInitialState = NO;
+    
+    transitionArea.enabled = NO;
     
     CGSize cardNumberSize = [self.cardNumber.formattedString sizeWithFont:self.cardNumberField.font];
     CGSize lastGroupSize = [self.cardNumber.lastGroup sizeWithFont:self.cardNumberField.font];
@@ -414,6 +432,10 @@
         
     } else if (![cardNumber isValidLength]) {
         [self textFieldIsInvalid:cardNumberField withErrors:NO];
+    }
+    
+    if (![cardNumber isValid]) {
+        transitionArea.enabled = NO;
     }
     
     return NO;

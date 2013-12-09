@@ -38,6 +38,7 @@
 @property IBOutlet PKTextField* cardCVCField;
 @property IBOutlet PKTextField* addressZipField;
 @property IBOutlet UIImageView* placeholderView;
+@property IBOutlet UIButton* transitionArea;
 
 @property (weak) id <PKViewDelegate> delegate;
 @property (readonly) PKCard* card;
